@@ -22,6 +22,8 @@ app.listen(port, () => {
   logger.log('info', '[EXPRESS] - listening port: %d', port);
 });
 
+// this is saying "for the home directory, use the home controller"
 app.use('/', require('./controllers/home'));
+app.use('/tasks', require('./controllers/tasks'));
 
 module.exports = app;

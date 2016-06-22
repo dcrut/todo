@@ -1,0 +1,34 @@
+extends ../shared/template
+block content
+  h1 Tasks
+
+  table.table.table-striped
+    thead
+      tr
+        th
+        th Name
+        th Due
+        th Priority
+        th Category
+        th Complete?
+        th Created
+        th
+    tbody
+      each task in viewTasks
+        tr(style='background-color:' + task.priority.color)
+          td
+            form(action='/tasks/' + task.id + '/complete', method='post')
+              button(type='submit') Complete
+          td= task.name
+          td= task.due
+          td= task.priority.name
+          td= task.category
+          td
+            if task.isComplete
+              i.fa.fa-check-square-o.fa-fw
+            else
+              i.fa.fa-square-o.fa-fw
+          td= task.createdAt
+          td
+            form(action='/tasks/' + task.id + '/delete', method='post')
+              button(type='submit') Delete
